@@ -1,4 +1,4 @@
-package com.example.paslur;
+package com.example.PASrafy;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +24,7 @@ public class ListDataFavourite extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
+        getSupportActionBar().hide();
         setContentView( R.layout.activity_list_data_favourite);
         getSupportActionBar().hide();
 

@@ -1,4 +1,4 @@
-package com.example.paslur;
+package com.example.PASrafy;
 
 import android.app.Application;
 
@@ -9,7 +9,6 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         Realm.init(this);
         RealmConfiguration configuration = new RealmConfiguration.Builder()
                 .name("movie.db")

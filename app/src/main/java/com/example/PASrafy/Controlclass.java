@@ -1,4 +1,4 @@
-package com.example.paslur;
+package com.example.PASrafy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,7 @@ public class Controlclass extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
+        getSupportActionBar().hide();
         sharedPreferences = getSharedPreferences( "login", Context.MODE_PRIVATE );
         if (sharedPreferences.getString( "username", "" ).isEmpty() ||
                 sharedPreferences.getString( "username", "" ).equalsIgnoreCase( "" )) {

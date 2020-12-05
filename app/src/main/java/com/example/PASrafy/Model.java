@@ -1,4 +1,4 @@
-package com.example.paslur;
+package com.example.PASrafy;
 
 public class Model {
 

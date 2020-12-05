@@ -1,4 +1,4 @@
-package com.example.paslur;
+package com.example.PASrafy;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;

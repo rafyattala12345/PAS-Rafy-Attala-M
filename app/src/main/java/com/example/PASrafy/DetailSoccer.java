@@ -1,20 +1,26 @@
-package com.example.paslur;
+package com.example.PASrafy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
-public class DetailFavourite extends AppCompatActivity {
+public class DetailSoccer extends AppCompatActivity {
+
     Realm realm;
+    RealmHelper realmHelper;
+    ModelMovieRealm movieModel;
+
 
 
     Bundle extras;
@@ -36,30 +42,34 @@ public class DetailFavourite extends AppCompatActivity {
     TextView tw;
     TextView ins;
     TextView year;
+    Button btnbookmark;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_detail_favourite );
+        getSupportActionBar().hide();
+        setContentView( R.layout.activity_detail_soccer );
         extras = getIntent().getExtras();
         tvjudul = (TextView) findViewById( R.id.tvjudul );
         tvdesc = (TextView) findViewById( R.id.txtdeskripsi );
         ivposter = (ImageView) findViewById( R.id.ivposter );
-        website = (TextView) findViewById( R.id.txtwebsite );
+        website = (TextView)  findViewById( R.id.txtwebsite );
         fb = (TextView) findViewById( R.id.txtfacebook );
         tw = (TextView) findViewById( R.id.txttwitter );
         ins = (TextView) findViewById( R.id.txtinstagram );
         year = (TextView) findViewById( R.id.txtyear );
+        btnbookmark = (Button) findViewById( R.id.btnbookmark );
 
         if (extras != null) {
-            title = extras.getString( "Team" );
-            id = extras.getString( "idTeam" );
-            web = extras.getString( "Website" );
-            yir = extras.getString( "FormedYear" );
-            deskripsi = extras.getString( "DescriptionEN" );
-            path = extras.getString( "TeamBadge" );
-            facebook = extras.getString( "Facebook" );
-            twitter = extras.getString( "Twitter" );
-            instagram = extras.getString( "Instagram" );
+            title = extras.getString( "strTeam" );
+            id = extras.getString("idTeam");
+            web = extras.getString( "strWebsite" );
+            yir = extras.getString( "intFormedYear" );
+            deskripsi = extras.getString( "strDescriptionEN" );
+            path = extras.getString( "strTeamBadge" );
+            facebook = extras.getString( "strFacebook" );
+            twitter = extras.getString( "strTwitter" );
+            instagram = extras.getString( "strInstagram");
             tvjudul.setText( title );
             tvdesc.setText( deskripsi );
             website.setText( web );
@@ -67,16 +77,31 @@ public class DetailFavourite extends AppCompatActivity {
             year.setText( yir );
             tw.setText( twitter );
             ins.setText( instagram );
-            Glide.with( DetailFavourite.this )
+            Glide.with( DetailSoccer.this )
                     .load( path )
                     .override( Target.SIZE_ORIGINAL )
                     .placeholder( R.mipmap.ic_launcher )
                     .into( ivposter );
             // and get whatever type user account id is
         }
-        Realm.init( DetailFavourite.this );
+        Realm.init( DetailSoccer.this );
         RealmConfiguration configuration = new RealmConfiguration.Builder().build();
         realm = Realm.getInstance( configuration );
-    }
 
+
+        btnbookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                movieModel = new ModelMovieRealm();
+                movieModel.setDescriptionEN(deskripsi);
+                movieModel.setTeam(title);
+                movieModel.setTeamBadge(path);
+                movieModel.setFormedYear(yir);
+
+                realmHelper = new RealmHelper(realm);
+                realmHelper.save(movieModel);
+
+            }
+        });
+    }
 }

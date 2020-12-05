@@ -1,4 +1,4 @@
-package com.example.paslur;
+package com.example.PASrafy;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -13,6 +13,7 @@ public class MainMenu extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
+        getSupportActionBar().hide();
         setContentView( R.layout.activity_main_menu );
         menu1 = (CardView)findViewById(R.id.menu1);
         menu1.setOnClickListener(new View.OnClickListener() {

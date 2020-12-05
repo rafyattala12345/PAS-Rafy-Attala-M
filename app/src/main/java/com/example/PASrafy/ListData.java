@@ -1,4 +1,4 @@
-package com.example.paslur;
+package com.example.PASrafy;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,6 +35,7 @@ public class ListData extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_data);
+        getSupportActionBar().hide();
         recyclerView = (RecyclerView) findViewById(R.id.rvdata);
         dialog = new ProgressDialog(ListData.this);
         //addData();
